@@ -21,7 +21,7 @@ jobs:
       #     bar: 99
 
       - name: invoke action from elsewhere
-        uses: ebekker/test-github-actions-and-repo/.github/actions/invoke-pwsh@master
+        uses: ebekker/test-github-actions-and-repo/.github/actions/pwsh-get-info@master
         env:
           SAMPLE_ENV_1: ${{ github.ref }}
           sample_env_2: ${{ github.sha }}
@@ -29,13 +29,14 @@ jobs:
         with:
           foo: bar
           bar: 99
-          list_files: 1
-
-      - name: invoke action for PWSH Hello World
-        uses: ebekker/test-github-actions-and-repo/.github/actions/pwsh-hello-world@master
+          list_files: 0
 
       - name: upload list_files
         uses: actions/upload-artifact@v1
+        if: false
         with:
           name: list_files
           path: list_files
+
+      - name: invoke action for PWSH Hello World
+        uses: ebekker/test-github-actions-and-repo/.github/actions/pwsh-hello-world@master
