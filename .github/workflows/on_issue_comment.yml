@@ -10,7 +10,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
 
-      # - name: invoke action
+      # - name: invoke action from here
       #   uses: ./.github/actions/invoke-pwsh
       #   env:
       #     SAMPLE_ENV_1: ${{ github.ref }}
@@ -20,7 +20,7 @@ jobs:
       #     foo: bar
       #     bar: 99
 
-      - name: invoke action again
+      - name: invoke action from elsewhere
         uses: ebekker/test-github-actions-and-repo/.github/actions/invoke-pwsh@master
         env:
           SAMPLE_ENV_1: ${{ github.ref }}
@@ -29,10 +29,13 @@ jobs:
         with:
           foo: bar
           bar: 99
-      #     list_files: 1
-      
-      # - name: upload list_files
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: list_files
-      #     path: list_files
+          list_files: 1
+
+      - name: invoke action for PWSH Hello World
+        uses: ebekker/test-github-actions-and-repo/.github/actions/pwsh-hello-world@master
+
+      - name: upload list_files
+        uses: actions/upload-artifact@v1
+        with:
+          name: list_files
+          path: list_files
